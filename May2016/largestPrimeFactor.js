@@ -1,75 +1,41 @@
-(function largestPrimeFactor(n) {
-  if(n <= 1) return n;
+//Largest Prime Factor
+//Find the largest prime factor of a given input
 
-  //List of primes in the memo
-  var memo = {2:2};
+  //largestPrimeFactor(2) --> 2
+  //largestPrimeFactor(20) --> 5
+  //largestPrimeFactor(21) --> 7
 
-  //Limit of prime factors to test
-  //Worst case scenario, n is p x p
-  //Where p is prime
-  var totalLimit = Math.sqrt(n);
+//Iterative Solution
+function largestPrimeFactor(num) {
 
-  //Thing we will return at the end
-  var temp = 2;
+  var subNum = num;
+  var test = 2;
 
-
-  //Tests a number's primality
-  //If prime, add to memo
-  function isPrime(num){
-    //Checks the memo
-    var limit = Math.sqrt(num);
-    var counter = 2;
-    while(counter <= limit){
-      if(num % counter === 0) return false;
-      counter++;
-    }
-    return true;
+  while(subNum > 1){
+    subNum % test === 0? subNum = subNum/test : test++;
   }
 
-  var findNextPrime = function(){
-    temp++;
-    if(isPrime(temp)) return temp;
-    findNextPrime();
-  }
+  return test;
+}
 
-  var recurse = function(num){
-    if(num === 1){
-      return temp;
-    }
+largestPrimeFactor(600851475143);
 
-    if()
+//Recursive Solution
+//Note: May exceed maximum call stack size for large numbers
 
-    for(var k in memo){
-      if(num % memo[k] === 0){
-        recurse
-      }
+// function largestPrimeFactor(num) {
 
-    }
+//  function recurse(subNum, test){
+//    if(subNum === 1){
+//      return test;
+//    }
+//    if(subNum % test === 0){
+//      return recurse(subNum/test, test);
+//    }
+//    if(subNum % test !== 0){
+//      return recurse(subNum, test + 1);
+//    }
+//  }
 
-  }
-
-
-  var counter = temp;
-
-  // while(counter <= limit) {
-  //  isPrime(counter);
-  //  counter++;
-  // }
-
-  if(temp === 1 || temp === n){
-    return n;
-  }
-
-
-
-})(16)
-
-
-
-//First we test 2
-//If it works, keep testing 2s
-//Then we check 3
-//If prime, check it
-//Keep going until you get to square root of the large number
-//IF the number left at that point is a 1 return temp
-//Else return number
+//  return recurse(num, 2);
+// }
