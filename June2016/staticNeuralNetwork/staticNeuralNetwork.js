@@ -1,13 +1,18 @@
-function createNode(n){
+function createVectorNode(n){
   this.val = n;
 }
 
-// function generateConnectivityMatrix(mat){
+function createMatrixNode(n){
+  this.val = n;
+}
 
-// }
+function generateConnectivityMatrix(matrix){
+  return matrix.map((item) =>
+    item.map((index) => new createMatrixNode(index)));
+}
 
 function generateStateVector(lst){
-  return lst.map((item) => new createNode(item));
+  return lst.map((item) => new createVectorNode(item));
 }
 
 
@@ -19,7 +24,7 @@ function updateStateVector(matrix, vector){
   vector.forEach((item) => {
     if(item.val) {
       for(rowIndex; rowIndex < matrix.length; rowIndex++){
-        if(matrix[rowIndex][columnIndex]){
+        if(matrix[rowIndex][columnIndex].val){
           result[rowIndex] = 1;
         }
       }
@@ -30,6 +35,10 @@ function updateStateVector(matrix, vector){
   return generateStateVector(result);
 }
 
+function resetStateVector(vector){
+  return vector.map((item) => item.val = 0)
+}
+
 //Tests
 var a = [
   [0, 1, 0, 0],
@@ -37,6 +46,8 @@ var a = [
   [1, 0, 0, 0],
   [0, 1, 0, 0]
   ];
+
+a = generateConnectivityMatrix(a)
 
 var v = generateStateVector([1, 0, 0, 0]);
 console.log(v);
