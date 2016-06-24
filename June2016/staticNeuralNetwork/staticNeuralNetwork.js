@@ -29,6 +29,7 @@ function updateStateVector(matrix, vector){
         }
       }
     }
+    rowIndex = 0;
     columnIndex++;
   })
 
