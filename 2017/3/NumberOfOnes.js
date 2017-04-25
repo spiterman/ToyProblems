@@ -34,3 +34,5 @@ function NumberOfOnes(arr){
 
   return 0;
 }
+
+console.log(NumberOfOnes([0, 0, 0, 1, 1, 1, 1]))
