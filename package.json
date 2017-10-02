@@ -1,0 +1,29 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "A repo of toy problems and solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiterman/ToyProblems.git"
+  },
+  "keywords": [
+    "toy",
+    "problems",
+    "algorithms",
+    "data",
+    "structures",
+    "coding",
+    "interview",
+    "preparation"
+  ],
+  "author": "Sergey Piterman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spiterman/ToyProblems/issues"
+  },
+  "homepage": "https://github.com/spiterman/ToyProblems#readme"
+}
