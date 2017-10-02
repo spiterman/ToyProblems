@@ -1,0 +1,17 @@
+Regex Golf
+
+Warmup
+foo
+
+Anchors
+k$
+
+Ranges
+^[a-f].[^g-z][^m]
+
+
+Backrefs
+(\w{3}).*\1
+
+Abba
+^(?!.*(.)(.)\2\1)
