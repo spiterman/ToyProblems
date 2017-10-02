@@ -1,0 +1,22 @@
+<html>
+  <head></head>
+  <body>
+    <div class="test">
+      <h1>Hello World</h1>
+      <input type="text" class="hack">
+      <button class="xss">Click me</button>
+    </div>
+    <script src="jQDOM.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+    $(function(){
+      $('.xss').click(function(){
+        var txt = $('.hack').val();
+        $('.test').append(txt)
+      });
+    });
+    </script>
+
+    <!-- <script>console.log('XSS HACKED')</script> -->
+  </body>
+</html>
