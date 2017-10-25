@@ -25,4 +25,6 @@ function sortedTwoSum(arr, target) {
   return [-1, -1]
 }
 
-console.log(sortedTwoSum([1, 2, 3, 4, 5], 10));
+module.exports = sortedTwoSum;
+
+// console.log(sortedTwoSum([1, 2, 3, 4, 5], 10));
