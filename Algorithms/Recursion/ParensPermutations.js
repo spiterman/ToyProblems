@@ -9,7 +9,7 @@ function ParensPermutations(num) {
       recurse(substr + ')', left, right - 1);
     } else if(left < right) {
       recurse(substr + ')', left, right - 1);
-      recurse(substr + '()', left - 1, right - 1);
+      recurse(substr + '(', left - 1, right);
     } else {
       recurse(substr + '(', left - 1, right);
     }
@@ -18,5 +18,5 @@ function ParensPermutations(num) {
   return result;
 }
 
-let result = ParensPermutations(3);
+let result = ParensPermutations(4);
 console.log(result)
