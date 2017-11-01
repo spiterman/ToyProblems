@@ -1,7 +1,9 @@
 
 
 #Changes the email and name in the repos commit history
-
+# Commit Info: https://help.github.com/articles/viewing-contributions-on-your-profile/
+# Source: https://help.github.com/articles/changing-author-info/
+# Article: https://code.bradymower.com/why-arent-my-commits-showing-up-on-my-contributions-graph-52141efa7542
 
 #!/bin/sh
 
