@@ -10,6 +10,6 @@ function bubbleSort(arr) {
 }
 
 
-console.log(bubbleSort([3, 2, 1, 6, 4, 8, 10, 39, 28, 57, 25]));
+// console.log(bubbleSort([3, 2, 1, 6, 4, 8, 10, 39, 28, 57, 25]));
 
 module.exports = bubbleSort;
