@@ -22,3 +22,13 @@ then
     export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
 fi
 ' --tag-name-filter cat -- --branches --tags
+
+
+
+
+# Resources for changin multiple commits:
+# Stack Overflow: https://stackoverflow.com/questions/4981126/how-to-amend-several-commits-in-git-to-change-author
+# https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages
+# https://www.git-tower.com/learn/git/faq/change-author-name-email
+
+# https://www.git-tower.com/learn/git/faq/change-author-name-email
