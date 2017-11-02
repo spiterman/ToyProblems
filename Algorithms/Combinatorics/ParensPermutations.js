@@ -18,5 +18,7 @@ function ParensPermutations(num) {
   return result;
 }
 
-let result = ParensPermutations(4);
-console.log(result)
+// let result = ParensPermutations(6);
+// console.log(result.length)
+
+module.exports = ParensPermutations;
