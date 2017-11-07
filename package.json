@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/spiterman/ToyProblems/issues"
   },
-  "homepage": "https://github.com/spiterman/ToyProblems#readme"
+  "homepage": "https://github.com/spiterman/ToyProblems#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "path": "^0.12.7"
+  }
 }
