@@ -2,7 +2,7 @@ function ratPath(matrix) {
   let path = [];
 
   function traverse(x, y) {
-    if(x > matrix[0].length || y > matrix.length) {
+    if(x >= matrix[0].length || y >= matrix.length) {
       return;
     }
     if(x === matrix[0].length - 1 && y === matrix.length - 1) {
@@ -24,16 +24,16 @@ function ratPath(matrix) {
   return path.reverse();
 }
 
-// let matrix = [[0, 0, 0, 1],
-// 		[0, 1, 0, 1],
-// 		[0, 1, 0, 0],
-// 		[0, 0, 1, 0]];
+let matrix = [[0, 0, 0, 1],
+		[0, 1, 0, 1],
+		[0, 1, 0, 0],
+		[0, 0, 1, 0]];
 
 // Expect
 // [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 3], [3, 3]]
 
 
-// console.log(ratPath(matrix));
+console.log(ratPath(matrix));
 
 
 module.exports = ratPath;
