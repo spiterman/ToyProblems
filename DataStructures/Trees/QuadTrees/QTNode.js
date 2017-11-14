@@ -1,9 +1,12 @@
 class QTNode {
-  constructor(topLeft, topRight, bottomLeft, bottomRight) {
-    this.topLeft = topLeft;
-    this.topRight = topRight;
-    this.bottomLeft = bottomLeft;
-    this.bottomRight = bottomRight;
+  constructor(coordinates, size) {
+    this.topLeft = null;
+    this.topRight = null;
+    this.bottomLeft = null;
+    this.bottomRight = null;
+
+    this.coordinates = coordinates;
+    this.size = size;
     this.storage = new Set();
   }
 }
