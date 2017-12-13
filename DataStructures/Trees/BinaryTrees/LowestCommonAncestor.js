@@ -11,19 +11,22 @@ function LowestCommonAncestor (root, num1, num2) {
 
   function ancestorPath (node, target, path) {
     if(node === null) {
-      return;
+      return null;
     }
     if(node.value === target) {
       path.push(node.value);
-      return true;
+      return path;
+      // return true;
     }
-    if(ancestorPath(node.left, target, path)) {
+    if(!(ancestorPath(node.left, target, path) === null)) {
       path.push(node.value);
       return path;
+      // return true;
     }
-    if(ancestorPath(node.right, target, path)) {
+    if(!(ancestorPath(node.right, target, path) === null)) {
       path.push(node.value);
       return path;
+      // return true;
     }
   }
 
@@ -47,21 +50,21 @@ function LowestCommonAncestor (root, num1, num2) {
 }
 
 // Tests
-// const five = new TreeNode(5);
-// const two = new TreeNode(2);
-// const seven = new TreeNode(7);
-// const four = new TreeNode(4);
-// const eight = new TreeNode(8);
-// const nine = new TreeNode(9);
-//
-//
-// five.left = two;
-// five.right = seven;
-// seven.left = four;
-// seven.right = eight;
-// eight.right = nine;
+const five = new TreeNode(5);
+const two = new TreeNode(2);
+const seven = new TreeNode(7);
+const four = new TreeNode(4);
+const eight = new TreeNode(8);
+const nine = new TreeNode(9);
 
-// console.log(LowestCommonAncestor(five, 9, 4))
+
+five.left = two;
+five.right = seven;
+seven.left = four;
+seven.right = eight;
+eight.right = nine;
+
+console.log(LowestCommonAncestor(five, 2, 7))
 
 
 module.exports = LowestCommonAncestor;
