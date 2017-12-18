@@ -16,17 +16,14 @@ function LowestCommonAncestor (root, num1, num2) {
     if(node.value === target) {
       path.push(node.value);
       return path;
-      // return true;
     }
     if(!(ancestorPath(node.left, target, path) === null)) {
       path.push(node.value);
       return path;
-      // return true;
     }
     if(!(ancestorPath(node.right, target, path) === null)) {
       path.push(node.value);
       return path;
-      // return true;
     }
   }
 
@@ -36,8 +33,6 @@ function LowestCommonAncestor (root, num1, num2) {
   arr1.reverse();
   arr2.reverse();
 
-  // console.log(arr1)
-  // console.log(arr2)
 
   let i = 0;
 
