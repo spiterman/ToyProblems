@@ -16,9 +16,9 @@ function sortedBitSearch(arr) {
     }
     mid = Math.floor((front + back)/2);
   }
-  return arr.length - mid;
+  return arr[mid] === 0 ? 0 : arr.length - mid;
 }
 
-// console.log(sortedBitSearch([0,0,0,0,1,1,1]));
+console.log(sortedBitSearch([0,0,0,0, 1]));
 
 module.exports = sortedBitSearch;
