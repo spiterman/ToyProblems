@@ -24,6 +24,8 @@ function ratPath(matrix) {
   return path.reverse();
 }
 
+// let matrix = [[0, 0], [0, 0]]
+
 let matrix = [[0, 0, 0, 1],
 		[0, 1, 0, 1],
 		[0, 1, 0, 0],
