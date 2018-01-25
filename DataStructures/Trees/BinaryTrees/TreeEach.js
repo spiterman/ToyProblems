@@ -19,9 +19,39 @@ function TreeEach(node, cb) {
   return recurse(node);
 }
 
+function TreeMapValues(node, cb) {
+  function recurse(current) {
+    if(current === null) {
+      return null;
+    }
+    let newNode = new TreeNode(cb(current.val));
+    newNode.left = recurse(current.left);
+    newNode.right = recurse(current.right);
+    return newNode;
+  }
+  return recurse(node);
+}
+
+
+// Helper Functions
+function print(node) {
+  console.log(node.val)
+}
+
+function reverse(node) {
+  [node.left, node.right] = [node.right, node.left]
+}
+
+function copy(val) {
+  return val;
+}
+
+function square(val) {
+  return val * val;
+}
+
 
 // Tests
-
 let node1 = new TreeNode(1)
 let node2 = new TreeNode(2)
 let node3 = new TreeNode(3)
@@ -38,19 +68,21 @@ node4.right = node6
 node6.left = node5
 node6.right = node7
 
-function print(node) {
-  console.log(node.val)
-}
 
-function reverse(node) {
-  [node.left, node.right] = [node.right, node.left]
-}
-
-console.log("Original Tree")
-TreeEach(node4, print)
-TreeEach(node4, reverse);
-console.log("Reversed Tree")
-TreeEach(node4, print)
+// console.log("Original Tree")
+// TreeEach(node4, print)
+// TreeEach(node4, reverse);
+// console.log("Reversed Tree")
+// TreeEach(node4, print)
 
 
-module.exports = TreeEach;
+// console.log("Squared copy")
+//
+// TreeEach(TreeEach(TreeMapValues(node4, square), reverse), print)
+//
+// console.log("Original Tree")
+// TreeEach(node4, print)
+
+exports.TreeNode = TreeNode;
+exports.TreeEach = TreeEach;
+exports.TreeMapValues = TreeMapValues;
