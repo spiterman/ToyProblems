@@ -1,24 +1,37 @@
-function getIntersectionNode (headA, headB) {
-  let lenA = length(headA);
-  let lenB = length(headB);
+// function getIntersectionNode (headA, headB) {
+//   let lenA = length(headA);
+//   let lenB = length(headB);
+//
+//   // move headA and headB to the same start point
+//   while (lenA > lenB) {
+//     headA = headA.next;
+//     lenA--;
+//   }
+//   while (lenA < lenB) {
+//     headB = headB.next;
+//     lenB--;
+//   }
+//
+//   // find the intersection until end
+//   while(headA !== headB) {
+//     headA = headA.next;
+//     headB = headB.next;
+//   }
+//   return headA;
+// };
 
-  // move headA and headB to the same start point
-  while (lenA > lenB) {
-    headA = headA.next;
-    lenA--;
-  }
-  while (lenA < lenB) {
-    headB = headB.next;
-    lenB--;
-  }
+function getIntersectionNode(headA, headB) {
+  let currentA = headA;
+  let currentB = headB;
 
-  // find the intersection until end
-  while(headA !== headB) {
-    headA = headA.next;
-    headB = headB.next;
+  while(currentA != currentB) {
+    currentA = currentA ? currentA = currentA.next : headB
+    currentB = currentB ? currentB = currentB.next : headA
   }
-  return headA;
-};
+  return currentA;
+
+}
+
 
 function ListNode(val) {
   this.val = val;
