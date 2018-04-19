@@ -1,122 +1,226 @@
 function startGame() {
+  // let board = createBoard();
+  //
+  // const players = {
+  //   "X" : placePiece("X", board),
+  //   "O" : placePiece("O", board)
+  // }
+  //
+  // process.stdout.write("New Game, it's Xs turn \n ")
+  // printBoard(board);
+  //
+  // let currentPlayer = "X";
+  // let numberOfRounds = 9;
+
+  let gameInfo = createGameInfo();
+  // const playRound = roundPlayerFactory(gameInfo);
+  // process.stdout.write("New Game, it's Xs turn \n ");
+  // // console.log(gameInfo)
+  // printBoard(gameInfo.board);
+
+  play(gameInfo);
+
+  // process.stdin.on("data", (data) => {
+  //   let moves = data.toString().trim().split(" ");
+  //   let row = parseInt(moves[0]);
+  //   let col = parseInt(moves[1]);
+  //   process.stdout.write("\n\n")
+  //
+  //   if(players[currentPlayer](row, col)) {
+  //     if(!checkWinCondition(currentPlayer, board) && numberOfRounds <= 0) {
+  //       declareNoWinners();
+  //     }
+  //     currentPlayer = switchPlayer(currentPlayer)
+  //     numberOfRounds -= 1;
+  //   }
+  //
+  // })
+
+}
+
+function createGameInfo() {
   let board = createBoard();
-
-  const players = {
-    "X" : placePiece("X", board),
-    "O" : placePiece("O", board)
-  }
-
-  process.stdout.write("New Game, it's Xs turn \n ")
-  printBoard(board);
-
   let currentPlayer = "X";
   let numberOfRounds = 9;
+  // let players = {
+  //   "X": placePiece("X", board),
+  //   "O": placePiece("O", board)
+  // }
+  return {board, currentPlayer, numberOfRounds}
+  // , players}
+}
 
+function play(gameInfo) {
+
+  process.stdout.write("Let's play Tic Tac Toe!\n\n")
+
+  // , it's ${gameInfo.currentPlayer}'s turn \n `);
+  // console.log(gameInfo)
+  // let gameInfo = createGameInfo();
+  printBoard(gameInfo);
+  printCurrentPlayersTurn(gameInfo);
+
+  let playRound = roundPlayerFactory(gameInfo);
 
   process.stdin.on("data", (data) => {
     let moves = data.toString().trim().split(" ");
     let row = parseInt(moves[0]);
     let col = parseInt(moves[1]);
-    process.stdout.write("\n\n")
+    process.stdout.write("\n")
+    playRound(row, col);
+    // printBoard(gameInfo);
+    // printCurrentPlayersTurn(gameInfo);
+  });
+}
 
-    if(players[currentPlayer](row, col)) {
-      if(!checkWinCondition(currentPlayer, board) && numberOfRounds <= 0) {
+function roundPlayerFactory(gameInfo) {
+  function playRound(row, col) {
+    // let attemptSuccessful = gameInfo.players[gameInfo.currentPlayer](row, col);
+
+    let canPlacePiece = placePiece(gameInfo)(row, col);
+
+    if(canPlacePiece) {
+      printBoard(gameInfo);
+      printCurrentMove(gameInfo)(row, col)
+
+      let detectWinner = checkWinCondition(gameInfo);
+
+      if(detectWinner) {
+        declareWinner(gameInfo);
+      }
+      if(!detectWinner && gameInfo.numberOfRounds <= 0) {
         declareNoWinners();
       }
-      currentPlayer = switchPlayer(currentPlayer)
-      numberOfRounds -= 1;
-    }
+      switchPlayer(gameInfo)
+      gameInfo.numberOfRounds -= 1;
 
-  })
+      printCurrentPlayersTurn(gameInfo);
+    } else {
+      printInvalidMove(gameInfo);
+    }
+  }
+  return playRound;
 }
 
 
-function switchPlayer(currentPlayer) {
-  if(currentPlayer === "X") {
-    return "O"
+function switchPlayer(gameInfo) {
+  if(gameInfo.currentPlayer === "X") {
+    gameInfo.currentPlayer = "O"
   } else {
-    return "X"
+    gameInfo.currentPlayer = "X"
   }
 }
 
-function placePiece(piece, board) {
+// function placePiece(piece, board) {
+//   return function(row, col) {
+//     if(isNaN(row) || isNaN(col) || row > 2 || row < 0 || col > 2 || col < 0 || board[row][col] === "X" || board[row][col] === "O") {
+//       process.stdout.write("Invalid position, try another \n\n");
+//       // process.stdout.write(`${piece}'s turn\n\n`)
+//       return false;
+//     } else {
+//       board[row][col] = piece;
+//       process.stdout.write(`An ${piece} was placed at row ${row}, col ${col} \n\n`);
+//       printBoard(board);
+//       return true;
+//     }
+//   }
+// }
+
+
+function placePiece(gameInfo) {
   return function(row, col) {
-    if(isNaN(row) || isNaN(col) || row > 2 || row < 0 || col > 2 || col < 0 || board[row][col] === "X" || board[row][col] === "O") {
-      process.stdout.write("Invalid position, try another \n\n");
-      process.stdout.write(`${piece}'s turn\n\n`)
+    if(isNaN(row) || isNaN(col) || row > 2 || row < 0 || col > 2 || col < 0 || gameInfo.board[row][col] === "X" || gameInfo.board[row][col] === "O") {
+      // process.stdout.write("Invalid position, try another \n\n");
+      // process.stdout.write(`${piece}'s turn\n\n`)
       return false;
     } else {
-      board[row][col] = piece;
-      process.stdout.write(`An ${piece} was placed at row ${row}, col ${col} \n\n`);
-      printBoard(board);
+      gameInfo.board[row][col] = gameInfo.currentPlayer;
+      // printCurrentMove(gameInfo)(row, col)
+      // process.stdout.write(`An ${piece} was placed at row ${row}, col ${col} \n\n`);
+      // printBoard(gameInfo);
       return true;
     }
   }
 }
 
 // Functions to create and print board
-function printBoard(board) {
-  process.stdout.write("\n")
-  board.forEach((line) => {
-    line.forEach((square) => {
-      process.stdout.write(`|${square}`);
-    })
-    process.stdout.write("|");
-    console.log("\n");
-  })
-  console.log("\n");
+
+function printInvalidMove(gameInfo){
+  process.stdout.write(`Invalid Move, ${gameInfo.currentPlayer} goes again \n\n`)
+}
+
+function printCurrentMove(gameInfo) {
+  return function(row, col){
+    process.stdout.write(`An ${gameInfo.currentPlayer} was placed at row ${row}, column ${col} \n\n`);
+  }
+}
+
+function printCurrentPlayersTurn(gameInfo) {
+  process.stdout.write(`It's ${gameInfo.currentPlayer}'s turn \n\n`);
 }
 
 function createBoard(){
   return [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]];
 }
 
+function printBoard(gameInfo) {
+  gameInfo.board.forEach((line) => {
+    line.forEach((square) => {
+      process.stdout.write(`|${square}`);
+    })
+    process.stdout.write("|");
+    process.stdout.write("\n");
+  })
+  process.stdout.write("\n");
+}
+
 // Functions to check for winners
-function declareWinner(winner) {
-  process.stdout.write(`\n ${winner} is the winner! \n`);
+function declareWinner(gameInfo) {
+  process.stdout.write(`\n${gameInfo.currentPlayer} is the winner! \n`);
   process.exit();
 }
 
 function declareNoWinners() {
-  process.stdout.write("\n Cat's game! \n");
+  process.stdout.write("\nCat's game! \n");
   process.exit();
 }
 
-function checkWinCondition(player, board) {
+function checkWinCondition(gameInfo) {
   // check rows, columns and diagonals
-  if(checkRows(player, board) || checkColumns(player, board) || checkDiagonals(player, board)) {
-    declareWinner(player);
+  if(checkRows(gameInfo) ||
+      checkColumns(gameInfo) ||
+      checkDiagonals(gameInfo)) {
     return true;
   }
   return false;
 }
 
-function checkDiagonals(player, board){
-  if(board[0][0] === player &&
-     board[1][1] === player &&
-     board[2][2] === player){
+function checkDiagonals(gameInfo){
+  if(gameInfo.board[0][0] === gameInfo.currentPlayer &&
+     gameInfo.board[1][1] === gameInfo.currentPlayer &&
+     gameInfo.board[2][2] === gameInfo.currentPlayer){
     return true;
   }
-  if(board[0][2] === player &&
-     board[1][1] === player &&
-     board[2][0] === player){
+  if(gameInfo.board[0][2] === gameInfo.currentPlayer &&
+     gameInfo.board[1][1] === gameInfo.currentPlayer &&
+     gameInfo.board[2][0] === gameInfo.currentPlayer){
     return true;
   }
   return false;
 }
 
-function checkRows(player, board){
-  for(let row = 0; row < board.length; row++) {
-    if(board[row][0] === player && board[row][1] === player && board[row][2] === player) {
+function checkRows(gameInfo){
+  for(let row = 0; row < gameInfo.board.length; row++) {
+    if(gameInfo.board[row][0] === gameInfo.currentPlayer && gameInfo.board[row][1] === gameInfo.currentPlayer && gameInfo.board[row][2] === gameInfo.currentPlayer) {
       return true;
     }
   }
   return false;
 }
 
-function checkColumns(player, board) {
-  for(let col = 0; col < board.length; col++) {
-    if(board[0][col] === player && board[1][col] === player && board[2][col] === player) {
+function checkColumns(gameInfo) {
+  for(let col = 0; col < gameInfo.board.length; col++) {
+    if(gameInfo.board[0][col] === gameInfo.currentPlayer && gameInfo.board[1][col] === gameInfo.currentPlayer && gameInfo.board[2][col] === gameInfo.currentPlayer) {
       return true;
     }
   }
