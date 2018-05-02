@@ -24,7 +24,7 @@ function KnapSack(values, weights, capacity) {
 
 
 
-console.log(KnapSack([6, 10, 12], [1, 2, 3], 5))
+console.log(KnapSack([6, 10, 12], [1, 2, 30], 5))
 
 
 // => 22
