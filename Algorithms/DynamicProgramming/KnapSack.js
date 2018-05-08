@@ -11,7 +11,7 @@ function KnapSack(values, weights, capacity) {
 
     for(let i = 0; i <= capacity; i++){ //O(K) Time
 
-      if(i - weight >= 0) {
+      if(i - weight >= 0) { //Key check here
         tempMax[i] = Math.max(tempMax[i], (finalMax[i - weight] + value))
       }
     }
@@ -24,7 +24,7 @@ function KnapSack(values, weights, capacity) {
 
 
 
-console.log(KnapSack([6, 10, 12], [1, 2, 30], 5))
+// console.log(KnapSack([6, 10, 12], [1, 2, 3], 5))
 
 
 // => 22
