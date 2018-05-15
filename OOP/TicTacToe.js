@@ -40,18 +40,25 @@ class TicTacToe {
 
   playRound(row, col) {
     if(this.canPlacePiece(row, col)) {
-      // place pice
+      this.placePiece(row, col);
+
       this.printBoard();
+
       this.printCurrentMove(row, col);
+
       let detectWinner = this.checkWinCondtion();
+
       if(detectWinner) {
         this.declareWinner();
       }
+
       this.decrementRounds();
+
       if(!detectWinner && this.numberOfRounds <= 0) {
         this.declareTie();
       }
       this.switchPlayer();
+
       this.printCurrentPlayersTurn();
     } else {
       this.printInvalidMove();
@@ -92,8 +99,11 @@ class TicTacToe {
     if(isNaN(row) || isNaN(col) || row > 2 || row < 0 || col > 2 || col < 0 || this.board[row][col] === "X" || this.board[row][col] === "O") {
       return false;
     }
-    this.board[row][col] = this.currentPlayer;
     return true;
+  }
+
+  placePiece(row, col) {
+    this.board[row][col] = this.currentPlayer;
   }
 
   checkWinCondtion() {
