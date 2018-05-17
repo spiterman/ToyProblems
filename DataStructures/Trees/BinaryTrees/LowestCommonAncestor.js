@@ -6,32 +6,74 @@ class TreeNode {
   }
 }
 
+// function LowestCommonAncestor (root, num1, num2) {
+//   let result = -1;
+//
+//   function ancestorPath (node, target, path) {
+//     if(node === null) {
+//       return null;
+//     }
+//     if(node.value === target) {
+//       path.push(node.value);
+//       return path;
+//     }
+//     if(!(ancestorPath(node.left, target, path) === null)) {
+//       path.push(node.value);
+//       return path;
+//     }
+//     if(!(ancestorPath(node.right, target, path) === null)) {
+//       path.push(node.value);
+//       return path;
+//     }
+//   }
+//
+//   let arr1 = ancestorPath(root, num1, []) || [];
+//   let arr2 = ancestorPath(root, num2, []) || [];
+//
+//   arr1.reverse();
+//   arr2.reverse();
+//
+//
+//   let i = 0;
+//
+//   while(arr1[i] === arr2[i]) {
+//     result = arr1[i];
+//     i++;
+//   }
+//
+//   return result;
+// }
+
+
+
 function LowestCommonAncestor (root, num1, num2) {
   let result = -1;
 
-  function ancestorPath (node, target, path) {
+  let arr1 = [];
+  let arr2 = [];
+
+  let path = [];
+
+  function ancestorPath (node) {
     if(node === null) {
-      return null;
+      return;
     }
-    if(node.value === target) {
-      path.push(node.value);
-      return path;
+    path.push(node.value);
+
+    if(node.value === num1) {
+      arr1 = path.slice();
     }
-    if(!(ancestorPath(node.left, target, path) === null)) {
-      path.push(node.value);
-      return path;
+
+    if(node.value === num2) {
+      arr2 = path.slice();
     }
-    if(!(ancestorPath(node.right, target, path) === null)) {
-      path.push(node.value);
-      return path;
-    }
+
+    ancestorPath(node.left);
+    ancestorPath(node.right);
+    path.pop();
   }
 
-  let arr1 = ancestorPath(root, num1, []) || [];
-  let arr2 = ancestorPath(root, num2, []) || [];
-
-  arr1.reverse();
-  arr2.reverse();
+  ancestorPath(root);
 
 
   let i = 0;
