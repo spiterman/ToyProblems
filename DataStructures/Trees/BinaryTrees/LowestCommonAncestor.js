@@ -104,4 +104,24 @@ eight.right = nine;
 console.log(LowestCommonAncestor(five, 2, 7))
 
 
+function LCA2(root, target1, target2) {
+  if(root == null) {
+    return null;
+  }
+  if(root.value == target1 || root.value == target2) {
+    return root;
+  }
+  var left = LCA2(root.left, target1, target2);
+  var right = LCA2(root.right, target1, target2);
+
+  if(left != null && right != null) {
+    return root;
+  }
+  return left == null? right : left;
+}
+// 
+// var parent = LCA2(five, 2, 9)
+// console.log("result2: " + parent.value);
+
+
 module.exports = LowestCommonAncestor;
