@@ -10,7 +10,7 @@ function longestSubstring(str) {
       seen[str[i]] += 1;
     }
 
-    while(seen[str[1]] > 1) {
+    while(seen[str[i]] > 1) {
       seen[str[slow]] -= 1;
       slow += 1
     }
