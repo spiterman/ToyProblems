@@ -65,4 +65,28 @@ function evaluateExpression(expr) {
   return accumulator;
 }
 
+
+
+function parseExpression(str){ 
+  let res = []; 
+  let cNum = ''; 
+  const isNum = c => '123456789.0'.includes(c); 
+
+  for(let i = 0; i < str.length; i++){ 
+    if(isNum(str[i])){  
+      cNum += str[i]; 
+      if(!isNum(str[i+1])){  
+        res.push(Number(cNum)); 
+        cNum = ''; 
+      } 
+    } 
+    else if(str[i] !== ' '){
+      res.push(str[i]);
+    }   
+  } 
+   
+  return res; 
+}
+
+
 parseExpression(test)
