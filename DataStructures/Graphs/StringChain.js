@@ -6,13 +6,13 @@ function stringChain(words) {
     setOfWords.add(word);
   });
 
-  // Sort the words by length O(n * log(n))
+  // Sort the words by length O(n * log(n)) Do it without sorting
   words.sort((a, b) => a.length < b.length)
 
   let seen = new Set();
   let queue = [];
 
-  // Perform BFS from every word in the arry sorted by length
+  // Perform BFS from every word in the array sorted by length
   for(let i = 0; i < words.length; i++) {
 
     if(!seen.has(words[i]) && words[i].length > maxChain) {
