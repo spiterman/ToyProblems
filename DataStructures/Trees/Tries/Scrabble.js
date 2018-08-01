@@ -47,6 +47,6 @@ function Scrabble(dictionary, characters) {
 const dictionary = fs.readFileSync("./dictionary.txt").toString().split("\n");
 
 
-let chars = ["t", "h", "e"];
+let chars = ["t", "h", "e", "e", "m", "a", "n", "s", "t"];
 
 console.log(Scrabble(dictionary, chars));
