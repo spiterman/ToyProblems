@@ -1,6 +1,15 @@
 function groupAnagrams(words) {
   let result = [];
   let anagramMap = {};
+  let chars = assignCharsToPrimes();
+
+  function computeAnagramNumber(str) {
+    let result = 1;
+    for(let i = 0; i < str.length; i++){
+      result *= chars[str[i]];
+    }
+    return result;
+  }
 
   words.forEach(word => {
     let anagramNum = computeAnagramNumber(word);
@@ -15,15 +24,6 @@ function groupAnagrams(words) {
     result.push(anagramMap[num]);
   }
 
-  return result;
-}
-
-function computeAnagramNumber(str) {
-  let chars = assignCharsToPrimes();
-  let result = 1;
-  for(let i = 0; i < str.length; i++){
-    result *= chars[str[i]];
-  }
   return result;
 }
 
