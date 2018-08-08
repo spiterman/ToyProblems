@@ -37,8 +37,6 @@ function assignCharsToPrimes(){
   return zip;
 }
 
-
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
-
 
 // Leetcode: https://leetcode.com/problems/group-anagrams/description/
