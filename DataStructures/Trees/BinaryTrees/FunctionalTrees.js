@@ -45,22 +45,18 @@ class BST {
   }
 
 
-  sum() {
-    function dfs(node) {
-      if(node === null) return 0;
-      return node.val + dfs(node.left) + dfs(node.right);
-    }
-    return dfs(this.root)
+  invertTree() {
+    this.forEachNode(invert);
   }
 
-
-  maxDepth() {
-    function dfs(node) {
-      if (node === null) return 0;
-      return Math.max(dfs(node.left), dfs(node.right)) + 1;
-    }
-    return dfs(this.root)
+  printTree() {
+    this.forEachNode(print);
   }
+
+  squareTree(){
+    this.forEachNode(square)
+  }
+
 
 
   reduce(reducer, startVal) { //Assumes Start Value
@@ -71,7 +67,27 @@ class BST {
     return dfs(this.root, startVal);
   }
 
+
+  countNodes() {
+    return this.reduce(count, 0)
+  }
+
+  sumTreeNodes() {
+    return this.reduce(sum, 0)
+  }
+
+  height() {
+    return this.reduce(height, 0)
+  }
+
+  width() {
+    return this.reduce(rightWidth, 0) - this.reduce(leftWidth, 0) - 1
+  }
+
+
   /*
+  // Flexible Reduce, that does not need a start value passed in
+
   reduceFlexible(reducer, startVal) { //Does not assume start value
     function dfs(node, accumulator) {
       if(node === null) return accumulator;
@@ -85,48 +101,32 @@ class BST {
     }
     return;
   }
+
+
+  // Old way of implementing sum() and height()
+
+    sum() {
+      function dfs(node) {
+        if(node === null) return 0;
+        return node.val + dfs(node.left) + dfs(node.right);
+      }
+      return dfs(this.root)
+    }
+
+
+    height() {
+      function dfs(node) {
+        if (node === null) return 0;
+        return Math.max(dfs(node.left), dfs(node.right)) + 1;
+      }
+      return dfs(this.root)
+    }
+
   */
-
-  width() {
-    return this.reduce(rightWidth, 0) - this.reduce(leftWidth, 0) - 1
-  }
-
 }
 
 
-
-function maxDepth(node, left, right) {
-  return Math.max(left, right) + 1;
-}
-
-function count(node, left, right) {
-  return 1 + left + right;
-}
-
-function sum(node, left, right) {
-  return node.val + left + right;
-}
-
-
-// To Do:
-// function width(node, left, right) {
-//   return rightWidth(node, left, right) - leftWidth(node, left, right)
-// }
-
-function leftWidth(node, left, right) {
-  return left - 1;
-}
-
-function rightWidth( node, left, right) {
-  return right + 1;
-}
-
-
-
-let tree = new BST()
-tree.addNodes([4, 2, 6, 1, 3, 5, 7])
-
-
+// Each Functions
 
 function square(node){
   node.val = node.val * node.val;
@@ -141,11 +141,39 @@ function reverse(node) {
 }
 
 
+// Reduce Functions
+
+function height(node, left, right) {
+  return Math.max(left, right) + 1;
+}
+
+function count(node, left, right) {
+  return 1 + left + right;
+}
+
+function sum(node, left, right) {
+  return node.val + left + right;
+}
+
+function leftWidth(node, left, right) {
+  return Math.min(left - 1, right + 1);
+}
+
+function rightWidth( node, left, right) {
+  return Math.max(left - 1, right + 1);
+}
+
+
+
+let tree = new BST()
+tree.addNodes([40, 20, 60, 10, 30, 50, 70, 29, 28, 26, 9, 8, 7, 25, 24, 23])
+
+
+
 // tree.forEachNode(print).forEachNode(square).forEachNode(reverse).forEachNode(print);
 
+
+console.log(tree.countNodes())
+console.log(tree.sumTreeNodes())
+console.log(tree.height())
 console.log(tree.width())
-
-
-// console.log(tree.reduce(maxDepth, 0))
-// console.log(tree.reduce(sum, 0))
-// console.log(tree.reduce(rightWidth, 0) - tree.reduce(leftWidth, 0) - 1)
