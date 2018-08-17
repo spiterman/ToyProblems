@@ -71,10 +71,6 @@ function maxPopulationAlternate(people) {
 
 
 let people = [
-  // {
-  //   born: 1920,
-  //   died: 1990
-  // },
   {
   name: "John",
   born: 1900,
@@ -102,5 +98,5 @@ let people = [
   }
 ]
 
-
+maxPopulation(people);
 maxPopulationAlternate(people);
