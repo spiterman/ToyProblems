@@ -11,22 +11,20 @@ function CountOnes(matrix) {
   let column = matrix[0].length - 1;
   let sum = 0;
   for(let row = 0; row < matrix.length; row++){
-    if(matrix[row][column] === 1){
-      while(matrix[row][column] === 1){
-        sum += (matrix.length - row);
-        column--;
-      }
+    while(matrix[row][column] === 1){
+      sum += (matrix.length - row);
+      column--;
     }
   }
   return sum;
 }
 
 // Tests
-// console.log(CountOnes([[0,0,1],[0,1,1],[1,1,1]]));
+console.log(CountOnes([[0,0,1],[0,1,1],[1,1,1]]));
 // 6
-// console.log(CountOnes([[1,1,1],[1,1,1],[1,1,1]]));
+console.log(CountOnes([[1,1,1],[1,1,1],[1,1,1]]));
 // 9
-// console.log(CountOnes([[0,0,1],[0,0,1],[0,0,1]]));
+console.log(CountOnes([[0,0,1],[0,0,1],[0,0,1]]));
 // 3
 
 module.exports = CountOnes;
