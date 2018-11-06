@@ -64,7 +64,7 @@ function minStepsMemo(n){
 // console.timeEnd('Memoization: ');
 
 function minStepsTab(n){
-    let result = [null, 0];
+    let result = [0, 0];
 
     for (let i = 2; i < n + 1; i++){
         let steps = result[i - 1];
@@ -84,5 +84,47 @@ function minStepsTab(n){
 
 //
 // console.time('Tabulation: ');
-// console.log(minStepsTab(200));
+console.log(minStepsTab(405));
 // console.timeEnd('Tabulation: ');
+
+
+/*
+Possible Constant space approach (Not Correct)
+
+function minSteps(n) {
+  let steps = 0;
+  while(n > 1) {
+    if((n > 3) && ((n - 1) % 3 === 0)) {
+      n -= 1;
+    } else if(n % 3 === 0) {
+      n /= 3;
+    } else if(n % 2 === 0){
+      n /= 2;
+    } else {
+      n -= 1;
+    }
+    steps++
+  }
+  return steps;
+}
+
+
+function ms(n) {
+  let table = [0, 0];
+
+  for(let i = 2; i <= n; i++) {
+    let result = table[i - 1];
+    if(i % 2 === 0) {
+      result = Math.min(result, table[i/2])
+    }
+    if(i % 3 === 0) {
+      result = Math.min(result, table[i/3])
+    }
+    table.push(result + 1);
+  }
+  return table[n]
+}
+
+console.log(minSteps(400))
+console.log(ms(400))
+*/
