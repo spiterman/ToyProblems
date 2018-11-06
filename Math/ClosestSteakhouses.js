@@ -22,4 +22,4 @@ function calculateDistance(coordinate) {
   return Math.sqrt(Math.pow(coordinate[0], 2) + Math.pow(coordinate[1], 2));
 }
 
-closestSteakhouses([[1,-1],[3,4], [2,5],[1,2]], 2)
+console.log(closestSteakhouses([[1,-1],[3,4], [2,5],[1,2]], 2))
