@@ -26,7 +26,7 @@ function getAllURLs(firstPage, result) {
   })
 }
 
-// getAllURLs(firstPage).then(console.log)
+// getAllURLs(firstPage, []).then(console.log)
 
 function getShips(passengers, url){
     return new Promise(function(resolve, reject){
@@ -45,11 +45,11 @@ function getShips(passengers, url){
 
 // getShips(10, firstPage).then(console.log)
 
-getAllURLs(firstPage, []).then(urls => {
-  return urls.map((url) => {
-    return getShips(10, url);
-  })
-}).then(promiseArray => {
-  return Promise.all(promiseArray);
-})
-.then(console.log)
+// getAllURLs(firstPage, []).then(urls => {
+//   return urls.map((url) => {
+//     return getShips(10, url);
+//   })
+// }).then(promiseArray => {
+//   return Promise.all(promiseArray);
+// })
+// .then(console.log)
