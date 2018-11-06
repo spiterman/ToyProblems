@@ -4,7 +4,9 @@
   "description": "A repo of toy problems and solutions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run destroy && npm run create",
+    "create": "mkdir -p homework_prompts/$folder/{java,js,py,rb,swift} && mkdir -p homework_solutions/$folder/{java,js,py,rb,swift} && mkdir -p target_practice_prompts/$folder/{java,js,py,rb,swift} && mkdir -p target_practice_solutions/$folder/{java,js,py,rb,swift} && mkdir -p warm_up_prompts/$folder/{java,js,py,rb,swift} && mkdir -p warm_up_solutions/$folder/{java,js,py,rb,swift} && mkdir -p foundation_solutions_temp/$folder/{java,js,py,rb,swift} && mkdir -p foundation_prompts_temp/$folder/{java,js,py,rb,swift} && node assets/build/builder.js",
+    "destroy": "rm -rf {homework_prompts,homework_solutions,target_practice_prompts,target_practice_solutions,warm_up_prompts,warm_up_solutions,foundation_solutions_temp,foundation_prompts_temp}",
   },
   "repository": {
     "type": "git",
