@@ -1,47 +1,51 @@
 /*
-Perform Heapsort in place
+Heapsort in place
+Time Complexity: O(N log N)
+Space Complexity: O(1)
 */
 
-const Swap = require('../Arrays/Swap');
+function heapSort(arr) {
+  let lastElement = arr.length;
 
-function Heapsort(arr) {
-  // return arr
+  function getChild(parent) {
+    let child1 = 2 * parent + 1;
+    let child2 = 2 * parent + 2;
 
-  for(let i = arr.length; i < arr.length; i++) {
-
-  }
-}
-
-function MaxHeapify(arr) {
-
-  // function helper(index) {
-  //   if(index >= arr.length || index === 0) {
-  //     return;
-  //   }
-  //   if(index % 2 === 0) {
-  //
-  //   } else {
-  //   }
-  //
-  // }
-}
-//
-function BubbleDown(arr, i){
-  if(i > arr.length){
-    return;
+    if (child1 >= lastElement) {
+      return child1;
+    } else if (child2 >= lastElement) {
+      return child1;
+    } else if (arr[child1] > arr[child2]) {
+      return child1;
+    } else {
+      return child2;
+    }
   }
 
+  function bubbleDown(parent) {
+    let child = getChild(parent);
 
-  if(arr[i] < arr[2 * i + 1] && arr[i] < arr[2 * i + 2]){
-    let indexToSwap;
-    Swap()
+    while (child <= lastElement  && arr[parent] < arr[child]) {
+      [arr[child], arr[parent]] = [arr[parent], arr[child]];
+      parent = child;
+      child = getChild(parent);
+    }
   }
 
+  let i = arr.length;
+  while (i--) {
+    bubbleDown(i);
+  }
+
+  lastElement--;
+  while(lastElement >= 0) {
+    [arr[0], arr[lastElement]] = [arr[lastElement], arr[0]]; //Swap
+    lastElement--;
+    bubbleDown(0);
+  }
+  return arr;
 }
 
-// Test
-// console.log(Heapsort([9, 2, 7, 4, 5, 1, 8, 0, 3, 6]));
+// console.log(heapSort([10, 4, 5, 1, 9, 6, 8, 9, 1]))
 
-// console.log(2 > undefined)=
-
-module.exports = Heapsort;
+module.exports = heapSort;
