@@ -24,12 +24,16 @@ class TicTacToe {
   }
 
   printBoard() {
-    this.board.forEach((line) => {
+    process.stdout.write("  0 1 2\n")
+    process.stdout.write("  _ _ _\n")
+    this.board.forEach((line, row) => {
+      process.stdout.write(`${row}`);
       line.forEach((square) => {
         process.stdout.write(`|${square}`);
       })
       process.stdout.write("|");
       process.stdout.write("\n");
+      process.stdout.write("  - - -\n")
     })
     process.stdout.write("\n");
   }
