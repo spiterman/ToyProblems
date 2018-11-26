@@ -15,3 +15,9 @@ var convertToBase7 = function(num) {
     }
     return sign + result;
 };
+
+
+/*
+Prompt
+https://leetcode.com/problems/base-7/description/
+*/
