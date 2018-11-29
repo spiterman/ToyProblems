@@ -26,10 +26,6 @@ class TicTacToe {
     })
   }
 
-  printCurrentPlayersTurn() {
-    process.stdout.write(`It's ${this.currentPlayer}'s turn \n\n`);
-  }
-
   playRound(row, col) {
     if(this.board.canPlacePiece(row, col)) {
       this.board.placePiece(row, col, this.currentPlayer);
@@ -57,6 +53,10 @@ class TicTacToe {
     }
   }
 
+  printCurrentPlayersTurn() {
+    process.stdout.write(`It's ${this.currentPlayer}'s turn \n\n`);
+  }
+
   decrementRounds() {
     this.numberOfRounds -= 1;
   }
@@ -75,16 +75,16 @@ class TicTacToe {
     process.stdout.write(`Invalid Move, ${this.currentPlayer} goes again \n\n`)
   }
 
+  printCurrentMove(row, col) {
+    process.stdout.write(`An ${this.currentPlayer} was placed at row ${row}, column ${col} \n\n`);
+  }
+
   switchPlayer() {
     if(this.currentPlayer === "X") {
       this.currentPlayer = "O";
     } else {
       this.currentPlayer = "X";
     }
-  }
-
-  printCurrentMove(row, col) {
-    process.stdout.write(`An ${this.currentPlayer} was placed at row ${row}, column ${col} \n\n`);
   }
 
 }
@@ -120,6 +120,13 @@ class Board {
     this.storage[row][col] = player;
   }
 
+  checkWinCondtion(player) {
+    if(this.checkRows(player) || this.checkColumns(player) || this.checkDiagonals(player)) {
+      return true;
+    }
+    return false;
+  }
+
   checkDiagonals(player) {
     if(this.storage[0][0] === player &&
        this.storage[1][1] === player &&
@@ -131,13 +138,6 @@ class Board {
        this.storage[2][0] === player) {
         return true;
       }
-    return false;
-  }
-
-  checkWinCondtion(player) {
-    if(this.checkRows(player) || this.checkColumns(player) || this.checkDiagonals(player)) {
-      return true;
-    }
     return false;
   }
 
