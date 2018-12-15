@@ -1,3 +1,40 @@
+/*
+CLOSED INTERVAL
+ Merge a closed interval [x, y] into an unsorted list of non-overlapping intervals [[x1,y1], [x2,y2]...].
+    A = [[5,6], [2,4], [8,9]] [10, 11]
+
+    mergeInterval([3,7], A) -> [[2,7], [8,9]]
+    mergeInterval([4,6], A) -> [[2,6], [8,9]]
+    mergeInterval([5,6], A) -> [[2,4],[5,6],[8,9]]
+    mergeInterval([1,12], A) -> [[1,12]]
+    mergeInterval([1,3], A) -> [[1,4] [5,6], [8,9]]
+    mergeInterval([11,13], A) -> [[2,4] [5,6], [8,9], [11,13
+
+
+       3_______________________9
+
+    2____4
+            5 ______ 7
+                           8______ 10
+
+               6____7
+
+
+    
+   ... 2__10 ....
+
+    A contains non overlapping intervals
+
+//     Cases for new Interval and how it relates to a given interval in the list
+//     1) Does not overlap at all
+//          a) comes before (insert)
+//          b) comes after (keep going)
+//    2) Overlap
+//          a) Fits entirely within other interval
+//          b) All encompassing
+//          c) overlaps over part of it
+*/
+
 function mergeIntervals(newInterval, intervalList) {
 
   let newList = [];
