@@ -22,11 +22,11 @@ function minimumSubstringWithRepeats(str, substr) {
 
     if(str[fast] in lettersNeeded) {
       lettersSeen[str[fast]] += 1;
+      if(lettersSeen[str[fast]] === lettersNeeded[str[fast]]) {
+        lettersMissing -= 1;
+      }
     }
-    if(lettersSeen[str[fast]] === lettersNeeded[str[fast]]) {
-      lettersMissing -= 1;
-    }
-    
+
     while(lettersMissing === 0) {
       if(fast - slow < result[1] - result[0]) {
         [result[0], result[1]] = [slow, fast];
