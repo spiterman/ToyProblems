@@ -21,3 +21,29 @@ function twoSum(arr, target) {
 module.exports = twoSum;
 
 // console.log(twoSum([1, 2, 3, 5, 5], 60));
+
+//https://leetcode.com/problems/two-sum/submissions/
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+
+/*
+
+var twoSum = function(nums, target) {
+
+    let complements = {};
+    nums.forEach((num, index) => {
+        complements[target - num] = index;
+    })
+
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] in complements && i != complements[nums[i]]) {
+            return [i, complements[nums[i]]];
+        }
+    }
+};
+
+
+*/
